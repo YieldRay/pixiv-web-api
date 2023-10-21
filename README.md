@@ -1,1 +1,3 @@
-a thin wrapper of pixiv web api
+# pixiv-web-api
+
+A thin wrapper of pixiv web api

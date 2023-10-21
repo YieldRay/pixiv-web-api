@@ -1,10 +1,35 @@
 import { requestJSONAPI } from "@/request";
 
-export const illustBookmarksAdd = (data: { illust_id: number; restrict?: 0 | 1; comment?: string; tags?: string[] }) =>
-    requestJSONAPI(`/ajax/illusts/bookmarks/add`, undefined, data);
+/**
+ * 添加爱心
+ */
+export const illustBookmarksAdd = (data: {
+    illust_id: `${number}`;
+    restrict?: 0 | 1;
+    /**
+     * @example ""
+     */
+    comment: string;
+    /**
+     * @example []
+     */
+    tags: string[];
+}) =>
+    requestJSONAPI<{ last_bookmark_id: `${number}`; stacc_status_id: `${number}` }>(
+        `/ajax/illusts/bookmarks/add`,
+        undefined,
+        data
+    );
 
-export const illustsBookmarksDelete = (data: { bookmark_id: number }) =>
-    requestJSONAPI(`/ajax/illusts/bookmarks/delete`, undefined, data);
+/**
+ * 取消爱心
+ */
+export const illustsBookmarksDelete = (data: {
+    /**
+     * 即 illustBookmarksAdd 返回的 last_bookmark_id
+     */
+    bookmark_id: `${number}`;
+}) => requestJSONAPI(`/ajax/illusts/bookmarks/delete`, undefined, data, true);
 
 export const illustsBookmarksEditRestrict = (data: {
     bookmark_ids: number[];

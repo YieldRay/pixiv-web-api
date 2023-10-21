@@ -49,41 +49,17 @@ export const illustRecommendIllusts = (query: Query<{ illust_ids: number[] }>) =
     requestJSONAPI(`/ajax/illust/recommend/illusts`, query);
 
 /**
- * 评论
- *
- * 此接口逻辑为：第一次 offset=0 limit=3 之后 offset=3 limit=50
- *
  * @reference https://www.pixiv.net/artworks/${id}
  */
-export const illustsCommentsRoots = (query: Query<{ illust_id: number; limit: number; offset: number }>) =>
-    requestJSONAPI(`/ajax/illusts/comments/roots`, query);
-
-/**
- * @reference https://www.pixiv.net/artworks/${id}
- */
-export const illustDiscovery = (query: { mode?: "safe" | string; max: number }) =>
+export const illustDiscovery = (query: { mode?: "all" | "safe" | "r18"; max: number }) =>
     requestJSONAPI(`/ajax/illust/discovery`, query);
-
-/**
- * 鼠标移入Tag时触发，返回一张预览图片
- *
- * @reference https://www.pixiv.net/artworks/${id}
- */
-export const tagInfo = (query: Query<{ tag: string }>) =>
-    requestJSONAPI<{
-        tag: string;
-        abstract: string;
-        thumbnail: string;
-        en: any;
-        en_new: any;
-        ja: any;
-        ja_new: any;
-        is_view_lead_wire: boolean;
-    }>(`/ajax/tag/info`, query);
 
 /**
  * （需要登录）动图数据
  */
 export const illustUgoiraMeta = (id: number) => requestJSONAPI(`/ajax/illust/${id}/ugoira_meta`);
 
+/**
+ * 喜欢
+ */
 export const illustsLike = (data: { illust_id: number }) => requestJSONAPI(`/ajax/illusts/like`, undefined, data);

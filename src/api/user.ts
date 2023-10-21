@@ -33,8 +33,8 @@ export const userFollowing = (
  *
  * @returns 无返回值
  */
-export const bookmarkAdd = (data: { mode: "add"; type: "user"; user_id: number; tag: string; restrict: "0" | "1" }) =>
-    requestJSON<[]>(`/bookmark_add.php?format=json`, undefined, data, true);
+export const userBookmarkAdd = (data: { user_id: number; tag: string; restrict: "0" | "1" }) =>
+    requestJSON<[]>(`/bookmark_add.php?format=json&type=user&mode=add`, undefined, data, true);
 
 /**
  * 推荐用户（关注当前用户之后的推荐）

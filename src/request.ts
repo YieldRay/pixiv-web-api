@@ -2,8 +2,6 @@ import { getOptions } from "./options";
 
 export const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
 
-export type NumberID = number | `${number}`;
-
 export type RequestQuery = Record<string, string | number | undefined | Array<string | number>>;
 
 export type Query<T extends RequestQuery = {}> = {
@@ -51,7 +49,7 @@ export const request = async (endpoint: string, query: RequestQuery = {}, data?:
             headers.set("Content-type", "application/x-www-form-urlencoded");
             body = new URLSearchParams(data);
         } else {
-            headers.set("Content-type", "application/json");
+            headers.set("Content-type", "application/json; charset=utf-8");
             body = JSON.stringify(data);
         }
     }

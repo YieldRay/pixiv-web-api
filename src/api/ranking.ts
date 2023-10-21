@@ -9,6 +9,7 @@ export const ranking = (query?: {
     mode?:
         | "all"
         | "daily"
+        | "weekly"
         | "monthly"
         | "rookie"
         | "original"

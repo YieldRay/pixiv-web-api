@@ -1,4 +1,10 @@
 {
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist",
+    "scripts": {
+        "build": "tsx src/indexUpdate.ts && tsc && esbuild --bundle src/index.ts --outdir=dist --minify --sourcemap --format=esm"
+    },
     "devDependencies": {
         "@types/node": "^20.8.7"
     }

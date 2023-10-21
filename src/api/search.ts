@@ -38,15 +38,19 @@ export const search = (
 
 type QuerySearch = {
     page: number;
-    mode?: string | "all" | "safe" | "r18";
+    mode: "all" | "safe" | "r18";
     /**
      * 按最新排序 date_d，按旧排序 date
      */
-    order?: string | "date_d" | "date";
+    order: string | "date_d" | "date";
     /**
      * 标签部分一致 s_tag，标签一致 s_all，标题说明文字：s_tc
      */
     s_mode?: string | "s_tag" | "s_all" | "s_tc";
+    /**
+     *  当 显示 AI 作品 开关开启时，是否隐藏 AI 作品
+     */
+    ai_type?: 1;
     /**
      * Width less than
      */
