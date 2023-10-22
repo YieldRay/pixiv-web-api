@@ -46,7 +46,7 @@ type QuerySearch = {
     /**
      * 标签部分一致 s_tag，标签一致 s_all，标题说明文字：s_tc
      */
-    s_mode?: string | "s_tag" | "s_all" | "s_tc";
+    s_mode?: "s_tag" | "s_tag_only" | "s_tag_full" | "s_tc";
     /**
      *  当 显示 AI 作品 开关开启时，是否隐藏 AI 作品
      */
@@ -69,4 +69,12 @@ type QuerySearch = {
     scd: string;
     ecd: string;
     type?: string | "all" | "illust_and_ugoira" | "illust" | "manga" | "ugoira";
+    /**
+     * type="novels"
+     */
+    work_lang: string | "zh-cn" | "ja" | "en" | "zh-tw";
+    /**
+     * type="novels"
+     */
+    gs: 0 | 1;
 } & Record<string, any>; // 其它为声明的参数

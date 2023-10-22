@@ -7,9 +7,14 @@ export const novelSeriesContent = (
     query?: {
         limit?: number;
         last_order?: number;
-        order_by?: "asc" | "desc" | string;
+        order_by?: "asc" | "dsc" | string;
+        page?: number;
+        size?: number;
     }
 ) => requestJSONAPI(`/ajax/novel/series_content/${id}`, query);
+
+export const novelSeriesContentTitles = (id: number) =>
+    requestJSONAPI<Array<{ available: Boolean; id: string; title: string }>>(`/ajax/novel/series/${id}/content_titles`);
 
 export const novelSeriesWatch = (id: number) => requestJSONAPI(`/ajax/novel/series/${id}/watch`, undefined, {});
 

@@ -12,11 +12,18 @@ export type Query<T extends RequestQuery = {}> = {
     lang?: string | "zh";
 } & T;
 
+type RequestType = "json" | "form" | "formdata";
 /**
  * The basic request function, returns Response
  */
-export const request = async (endpoint: string, query: RequestQuery = {}, data?: any, isForm = false) => {
-    const { baseURL, cookie, xUserId, acceptLanguage } = getOptions();
+export const request = (endpoint: string, query: RequestQuery = {}, data?: any, type: RequestType = "json") => {
+    const {
+        fetch = globalThis.fetch,
+        baseURL = "https://www.pixiv.net",
+        cookie,
+        xUserId,
+        acceptLanguage,
+    } = getOptions();
 
     const url = new URL(baseURL + endpoint);
     Object.entries(query).forEach(([k, v]) => {
@@ -45,25 +52,39 @@ export const request = async (endpoint: string, query: RequestQuery = {}, data?:
 
     let body: RequestInit["body"] = undefined;
     if (data) {
-        if (isForm) {
-            headers.set("Content-type", "application/x-www-form-urlencoded");
-            body = new URLSearchParams(data);
-        } else {
-            headers.set("Content-type", "application/json; charset=utf-8");
-            body = JSON.stringify(data);
+        switch (type) {
+            case "json": {
+                headers.set("Content-type", "application/json; charset=utf-8");
+                body = JSON.stringify(data);
+                break;
+            }
+            case "form": {
+                headers.set("Content-type", "application/x-www-form-urlencoded");
+                body = new URLSearchParams(data);
+                break;
+            }
+            case "formdata": {
+                const fd = new FormData();
+                for (const [key, val] of Object.entries(data)) {
+                    fd.append(
+                        key,
+                        val instanceof Blob ? val : typeof val === "object" ? JSON.stringify(val) : String(val)
+                    );
+                }
+                break;
+            }
         }
     }
 
-    const req = new Request(url, {
-        method: data ? "POST" : "GET",
-        body,
-        headers,
-        referrerPolicy: isBrowser ? "no-referrer" : undefined,
-    });
-
-    const res = await fetch(req);
-    console.log(res.url);
-    return res;
+    return fetch(
+        String(url), // 防止某些 fetch 的实现第一个参数只接受字符串
+        {
+            method: data ? "POST" : "GET",
+            body,
+            headers,
+            referrerPolicy: isBrowser ? "no-referrer" : undefined,
+        }
+    );
 };
 
 /**
@@ -73,9 +94,9 @@ export const requestJSON = async <T = any>(
     endpoint: string,
     query: RequestQuery = {},
     data?: any,
-    isForm?: boolean
+    type?: RequestType
 ) => {
-    const res = await request(endpoint, query, data, isForm);
+    const res = await request(endpoint, query, data, type);
     if (res.ok) {
         return (await res.json()) as T;
     } else {
@@ -90,13 +111,13 @@ export const requestJSONAPI = async <T = any, U = unknown>(
     endpoint: string,
     query: RequestQuery = {},
     data?: any,
-    isForm?: boolean
+    type?: RequestType
 ) => {
     const json = await requestJSON<{ error: false; body: T } | { error: true; message: string; body: U }>(
         endpoint,
         query,
         data,
-        isForm
+        type
     );
     if (json.error) {
         throw new Error(json.message);

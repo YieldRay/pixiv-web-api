@@ -1,11 +1,32 @@
 {
+    "name": "pixiv-web-api",
+    "author": "YieldRay",
+    "version": "0.1.0",
+    "description": "A thin wrapper of pixiv web api",
+    "keywords": [
+        "pixiv"
+    ],
+    "license": "ISC",
     "type": "module",
-    "main": "dist/index.js",
-    "types": "dist",
+    "types": "dist/index.d.ts",
+    "files": [
+        "src/",
+        "dist/"
+    ],
+    "exports": {
+        "import": "./dist/index.js",
+        "require": "./dist/index.umd.js"
+    },
+    "browser": "./dist/index.umd.js",
     "scripts": {
-        "build": "tsx src/indexUpdate.ts && tsc && esbuild --bundle src/index.ts --outdir=dist --minify --sourcemap --format=esm"
+        "build": "npm run build:types && rollup -c",
+        "build:types": "tsx src/indexUpdate.ts && rm -rf dist/* && tsc"
     },
     "devDependencies": {
-        "@types/node": "^20.8.7"
+        "@rollup/plugin-typescript": "^11.1.5",
+        "@types/node": "^20.8.7",
+        "rollup": "^4.1.4",
+        "tsx": "^3.14.0",
+        "typescript": "^5.2.2"
     }
 }

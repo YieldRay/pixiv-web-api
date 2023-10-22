@@ -38,4 +38,4 @@ export const setOptions = (partialOptions: Partial<Options>) => {
 /**
  * Get the global options
  */
-export const getOptions = () => options as Readonly<Options>;
+export const getOptions: () => Readonly<Options> = () => options;

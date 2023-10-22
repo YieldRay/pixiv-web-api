@@ -44,6 +44,8 @@ export const illustRecommendInit = (
  *
  * 此接口的逻辑为：先调用 illustRecommendInit() 获取返回的 nextIds 数组
  * 取该数组的前 18 个作为本接口的查询字符串
+ *
+ * @reference https://www.pixiv.net/artworks/${id}
  */
 export const illustRecommendIllusts = (query: Query<{ illust_ids: number[] }>) =>
     requestJSONAPI(`/ajax/illust/recommend/illusts`, query);
@@ -56,6 +58,8 @@ export const illustDiscovery = (query: { mode?: "all" | "safe" | "r18"; max: num
 
 /**
  * （需要登录）动图数据
+ *
+ * @reference https://www.pixiv.net/artworks/${id}
  */
 export const illustUgoiraMeta = (id: number) => requestJSONAPI(`/ajax/illust/${id}/ugoira_meta`);
 

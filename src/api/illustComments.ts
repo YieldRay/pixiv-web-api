@@ -20,12 +20,20 @@ export const illustsCommentsReplies = (query: { comment_id: number; page: number
 
 /**
  * 发表评论
+ *
+ * @reference https://www.pixiv.net/artworks/${id}
  */
-export const rpcPostComment = (data: { type: "comment"; illust_id: number; author_user_id: number; comment: string }) =>
-    requestJSONAPI(`/rpc/post_comment.php`, undefined, data, true);
+export const rpcPostComment = (data: {
+    type: "comment" | "stamp";
+    illust_id: number;
+    author_user_id: number;
+    comment: string;
+}) => requestJSONAPI(`/rpc/post_comment.php`, undefined, data, "form");
 
 /**
  * 删除评论
+ *
+ * @reference https://www.pixiv.net/artworks/${id}
  */
 export const rpcDeleteComment = (data: {
     /**
@@ -36,4 +44,4 @@ export const rpcDeleteComment = (data: {
      * 即 rpcPostComment 得到的 comment_id
      */
     del_id: number;
-}) => requestJSONAPI(`/rpc_delete_comment.php`, undefined, data, true);
+}) => requestJSONAPI(`/rpc_delete_comment.php`, undefined, data, "form");

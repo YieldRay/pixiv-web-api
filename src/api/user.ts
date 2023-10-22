@@ -34,7 +34,7 @@ export const userFollowing = (
  * @returns 无返回值
  */
 export const userBookmarkAdd = (data: { user_id: number; tag: string; restrict: "0" | "1" }) =>
-    requestJSON<[]>(`/bookmark_add.php?format=json&type=user&mode=add`, undefined, data, true);
+    requestJSON<[]>(`/bookmark_add.php?format=json&type=user&mode=add`, undefined, data, "form");
 
 /**
  * 推荐用户（关注当前用户之后的推荐）
@@ -54,7 +54,7 @@ export const userRecommends = (
  * 取消关注用户
  */
 export const rpcGroupSetting = (data: { mode: "del"; type: "bookuser"; id: number }) =>
-    requestJSON<{ type: string; user_id: string }>(`/rpc_group_setting.php`, undefined, data, true);
+    requestJSON<{ type: string; user_id: string }>(`/rpc_group_setting.php`, undefined, data, "form");
 
 /**
  * 当前用户额外信息
@@ -73,8 +73,12 @@ export const rpc = (
         | {
               mode: "message_thread_unread_count";
           }
+        | { mode: "latest_message_threads2"; num: number }
     >
 ) => requestJSONAPI(`/rpc/index.php`, undefined, data);
 
-export const rpcNotifyCount = (query: Query<{ op: string | "count_unread" }>) =>
-    requestJSON(`/rpc/notify_count.php`, query);
+/**
+ * @params query 可选
+ */
+export const userProfile = (id: number, type: "all" | "top" | "illusts" | "novels", query?: Query<{ ids: number[] }>) =>
+    requestJSONAPI(`/ajax/user/${id}/profile/${type}`, query);
