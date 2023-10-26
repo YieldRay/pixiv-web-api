@@ -28,7 +28,8 @@
         /* Declaration */
         "declaration": true,
         "emitDeclarationOnly": true,
-        "declarationDir": "dist"
+        "declarationDir": "dist",
+        "removeComments": true
     },
     "include": ["src"]
 }

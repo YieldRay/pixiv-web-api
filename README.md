@@ -23,8 +23,12 @@ type APIResponse<T> = {
 
 ## 示例
 
+```
+npm install @__dirname/pixiv-web-api
+```
+
 ```ts
-import * as api from "./dist/index.js";
+import * as api from "@__dirname/pixiv-web-api";
 
 // 默认配置直接请求官方接口，使用默认配置则不需要调用下面的配置函数
 api.setOptions({

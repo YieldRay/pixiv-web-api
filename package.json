@@ -1,32 +1,43 @@
 {
-    "name": "pixiv-web-api",
+    "name": "@__dirname/pixiv-web-api",
     "author": "YieldRay",
-    "version": "0.1.0",
+    "version": "0.1.1",
+    "type": "module",
     "description": "A thin wrapper of pixiv web api",
     "keywords": [
         "pixiv"
     ],
     "license": "ISC",
-    "type": "module",
     "types": "dist/index.d.ts",
     "files": [
         "src/",
         "dist/"
     ],
+    "main": "dist/index.js",
+    "browser": "./dist/index.umd.js",
     "exports": {
         "import": "./dist/index.js",
         "require": "./dist/index.umd.js"
     },
-    "browser": "./dist/index.umd.js",
     "scripts": {
         "build": "npm run build:types && rollup -c",
-        "build:types": "tsx src/indexUpdate.ts && rm -rf dist/* && tsc"
+        "build:types": "tsx src/indexUpdate.ts && rm -rf dist/* && tsc",
+        "publish-to-npm": "npm publish --access public"
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.5",
-        "@types/node": "^20.8.7",
+        "@types/node": "^20.8.8",
         "rollup": "^4.1.4",
+        "tslib": "^2.6.2",
         "tsx": "^3.14.0",
         "typescript": "^5.2.2"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/YieldRay/pixiv-web-api.git"
+    },
+    "bugs": {
+        "url": "https://github.com/YieldRay/pixiv-web-api/issues"
+    },
+    "homepage": "https://github.com/YieldRay/pixiv-web-api#readme"
 }
