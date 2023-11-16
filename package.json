@@ -22,14 +22,16 @@
     "scripts": {
         "build": "npm run build:types && rollup -c",
         "build:types": "tsx src/indexUpdate.ts && rm -rf dist/* && tsc",
-        "publish-to-npm": "npm publish --access public"
+        "publish-to-npm": "npm publish --access public",
+        "doc": "typedoc ./src/index.ts --out doc"
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.5",
-        "@types/node": "^20.8.8",
-        "rollup": "^4.1.4",
+        "@types/node": "^20.9.0",
+        "rollup": "^4.4.1",
         "tslib": "^2.6.2",
         "tsx": "^3.14.0",
+        "typedoc": "^0.25.3",
         "typescript": "^5.2.2"
     },
     "repository": {

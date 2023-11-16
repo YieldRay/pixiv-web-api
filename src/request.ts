@@ -13,8 +13,13 @@ export type Query<T extends RequestQuery = {}> = {
 } & T;
 
 type RequestType = "json" | "form" | "formdata";
+
 /**
- * The basic request function, returns Response
+ * The basic request function, returns `Response` instance
+ *
+ * @param query an object to add to url search params
+ * @param data if data is falsy value, send GET request, otherwise send POST request
+ * @param type for adjusting request content-type, by default is json format
  */
 export const request = (endpoint: string, query: RequestQuery = {}, data?: any, type: RequestType = "json") => {
     const {

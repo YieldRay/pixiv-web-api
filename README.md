@@ -21,30 +21,70 @@ type APIResponse<T> = {
 
 另外一种则是直接返回数据，此时我们也直接返回数据
 
+# 安装
+
+node.js 安装
+
+```sh
+npm i @__dirname/pixiv-web-api --registry https://registry.npmjs.org/
+```
+
+```js
+import * as pixiv_web_api from "@__dirname/pixiv-web-api";
+```
+
+浏览器引入为全局变量
+
+```html
+<script src="https://unpkg.com/@__dirname/pixiv-web-api/dist/index.umd.js"></script>
+<script>
+    pixiv_web_api.ranking().then((data) => {
+        // ...
+    });
+</script>
+```
+
+浏览器以模块导入
+
+```html
+<script type="module">
+    import * as pixiv_web_api from "https://unpkg.com/@__dirname/pixiv-web-api/dist/index.js";
+    pixiv_web_api.ranking().then((data) => {
+        // ...
+    });
+</script>
+```
+
 ## 示例
 
-```
-npm install @__dirname/pixiv-web-api
-```
-
 ```ts
-import * as api from "@__dirname/pixiv-web-api";
+import * as api from "https://unpkg.com/@__dirname/pixiv-web-api@latest/dist/index.js";
 
 // 默认配置直接请求官方接口，使用默认配置则不需要调用下面的配置函数
 api.setOptions({
-    // 默认值 https://www.pixiv.net
-    // 若实现了对 https://www.pixiv.net 的反向代理，则可以使用该代理调用 API
+    // 默认值 https://www.pixiv.net （国内网络需要代理）
+    // 若实现了对 https://www.pixiv.net 的反向代理，则可以使用该代理调用 API，例如：
     baseURL: "https://md-cors.deno.dev/https://www.pixiv.net",
-    // 语言
+    // 设置语言
     // 浏览器环境可省略
     acceptLanguage: "zh-CN",
     // 仅当访问需要登陆的接口才必须提供
     cookie: "xxx",
     // 默认值 globalThis.fetch
-    // 自定义 fetch 函数
+    // 用于自定义发出请求的 fetch 函数
     fetch: globalThis.fetch,
 });
 
 const data = await api.ranking(); // 获取排行榜
 console.log(data);
+```
+
+# 构建
+
+```sh
+git clone https://github.com/YieldRay/pixiv-web-api.git
+cd pixiv-web-api
+npm install
+npm run build
+npm pack --pack-destination dist
 ```

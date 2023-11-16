@@ -21,10 +21,11 @@ export const userWorksLatest = (id: number, query?: Query) => requestJSONAPI(`/a
 
 export const userFollowing = (
     id: number,
-    query?: {
+    query: {
         offset: number;
-        limit?: number;
-        rest?: "show" | "hide";
+        /** 建议值 24，最大值 100 */
+        limit: number;
+        rest: "show" | "hide";
     }
 ) => requestJSONAPI(`/ajax/user/${id}/following`, query);
 
