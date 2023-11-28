@@ -3,3 +3,5 @@ dist/
 demo/
 package-lock.json
 doc/
+out/
+demo/

@@ -27,10 +27,13 @@ node.js 安装
 
 ```sh
 npm i @__dirname/pixiv-web-api --registry https://registry.npmjs.org/
+# 确保使用的是官方 npm 源
 ```
 
 ```js
 import * as pixiv_web_api from "@__dirname/pixiv-web-api";
+// 或按需引入
+import { ranking } from "@__dirname/pixiv-web-api";
 ```
 
 浏览器引入为全局变量
@@ -58,7 +61,7 @@ import * as pixiv_web_api from "@__dirname/pixiv-web-api";
 ## 示例
 
 ```ts
-import * as api from "https://unpkg.com/@__dirname/pixiv-web-api@latest/dist/index.js";
+import * as api from "@__dirname/pixiv-web-api";
 
 // 默认配置直接请求官方接口，使用默认配置则不需要调用下面的配置函数
 api.setOptions({
@@ -86,5 +89,5 @@ git clone https://github.com/YieldRay/pixiv-web-api.git
 cd pixiv-web-api
 npm install
 npm run build
-npm pack --pack-destination dist
+npm pack --pack-destination out
 ```
