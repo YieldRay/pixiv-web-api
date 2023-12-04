@@ -1,7 +1,7 @@
 # pixiv-web-api
 
 对 Pixiv 网页端 API 的简单封装  
-零依赖，基于 `fetch()`，因此支持多数 Javascript 运行时
+零依赖，基于 `fetch()`，因此支持多数 Javascript 运行时（例如：浏览器，nodejs>=18，deno，bun，以及其它 serverless 环境）
 
 ## 返回值
 
@@ -69,7 +69,7 @@ api.setOptions({
     // 若实现了对 https://www.pixiv.net 的反向代理，则可以使用该代理调用 API，例如：
     baseURL: "https://md-cors.deno.dev/https://www.pixiv.net",
     // 设置语言
-    // 浏览器环境可省略
+    // 浏览器默认为本机语言，其它环境默认值为 zh-CN（设置为空字符串可移除）
     acceptLanguage: "zh-CN",
     // 仅当访问需要登陆的接口才必须提供
     cookie: "xxx",

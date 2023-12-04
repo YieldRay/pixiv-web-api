@@ -45,14 +45,16 @@ export const request = (endpoint: string, query: RequestQuery = {}, data?: any, 
     if (xUserId) headers.set("X-User-Id", xUserId.toString());
 
     if (isBrowser) {
-        if (acceptLanguage) headers.set("Accept-Language", acceptLanguage);
+        headers.set("Accept-Language", acceptLanguage ?? "zh-CN");
     } else {
+        // 浏览器会自动设置此 Header，无需提供默认值
+        if (acceptLanguage) headers.set("Accept-Language", acceptLanguage);
+        // 以下 Headers 浏览器受限
         headers.set(
             "User-Agent",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.0.0"
         );
         headers.set("Referer", "https://www.pixiv.net");
-        if (acceptLanguage) headers.set("Accept-Language", acceptLanguage);
     }
 
     let body: RequestInit["body"] = undefined;
@@ -76,6 +78,7 @@ export const request = (endpoint: string, query: RequestQuery = {}, data?: any, 
                         val instanceof Blob ? val : typeof val === "object" ? JSON.stringify(val) : String(val)
                     );
                 }
+                body = fd;
                 break;
             }
         }
