@@ -20,19 +20,20 @@
         "require": "./dist/index.umd.js"
     },
     "scripts": {
-        "build": "npm run build:types && rollup -c",
-        "build:types": "tsx src/indexUpdate.ts && rm -rf dist/* && tsc",
+        "prebuild": "rm -rf dist/*",
+        "build": "rollup -c",
+        "postbuild": "tsc",
         "publish-to-npm": "npm publish --access public",
         "doc": "typedoc ./src/index.ts --out doc"
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.5",
-        "@types/node": "^20.10.3",
-        "rollup": "^4.6.1",
+        "@types/node": "^20.10.5",
+        "rollup": "^4.9.1",
         "tslib": "^2.6.2",
         "tsx": "^3.14.0",
         "typedoc": "^0.25.4",
-        "typescript": "^5.3.2"
+        "typescript": "^5.3.3"
     },
     "repository": {
         "type": "git",
