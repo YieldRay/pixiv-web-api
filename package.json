@@ -1,0 +1,10 @@
+{
+    "name": "root",
+    "private": true,
+    "scripts": {
+        "preinstall": "npx only-allow pnpm",
+        "format": "prettier --write .",
+        "build:docs": "pnpm --dir=packages/pixiv-web-api docs",
+        "build:api": "pnpm --dir=packages/pixiv-web-api build"
+    }
+}

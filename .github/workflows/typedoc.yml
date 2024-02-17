@@ -1,0 +1,52 @@
+name: Deploy typedoc to Pages
+
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+concurrency:
+    group: "pages"
+    cancel-in-progress: true
+
+jobs:
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  registry-url: "https://registry.npmjs.org"
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 8
+
+            - name: Build docs
+              run: |
+                  pnpm install
+                  pnpm run build:docs
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v3
+            - name: Upload artifact
+
+              uses: actions/upload-pages-artifact@v2
+              with:
+                  path: "./packages/pixiv-web-api/docs"
+
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v2
