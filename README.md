@@ -63,10 +63,10 @@ import { ranking } from "@__dirname/pixiv-web-api"
 ## 示例
 
 ```ts
-import * as api from "@__dirname/pixiv-web-api"
+import * as pixiv_web_api from "@__dirname/pixiv-web-api"
 
 // 默认配置直接请求官方接口，使用默认配置则不需要调用下面的配置函数
-api.setOptions({
+pixiv_web_api.setOptions({
     // 默认值 https://www.pixiv.net （国内网络需要代理）
     // 若实现了对 https://www.pixiv.net 的反向代理，则可以使用该代理调用 API，例如：
     baseURL: "https://cors.streammaximum.com/https://www.pixiv.net",
@@ -80,7 +80,7 @@ api.setOptions({
     fetch: globalThis.fetch,
 })
 
-const data = await api.ranking() // 获取排行榜
+const data = await pixiv_web_api.ranking() // 获取排行榜
 console.log(data)
 ```
 
@@ -89,7 +89,7 @@ console.log(data)
 ```sh
 git clone https://github.com/YieldRay/pixiv-web-api.git
 cd pixiv-web-api
-npm install
-npm run build
-npm pack --pack-destination out
+pnpm install
+pnpm build:api   # 构建API
+pnpm build:docs  # 构建文档
 ```
