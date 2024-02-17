@@ -6,8 +6,8 @@ const { JSX, RendererEvent } = require("typedoc")
 
 // static assets map
 const ASSETS = {
-    "./script.js": "assets/typedoc-custom-style.js",
-    "./style.css": "assets/typedoc-custom-style.css",
+    "./script.js": "assets/typedoc-theme-azure.js",
+    "./style.css": "assets/typedoc-theme-azure.css",
 }
 
 function linkStyleSheet(href) {

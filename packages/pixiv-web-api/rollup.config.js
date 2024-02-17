@@ -8,7 +8,7 @@ import * as path from "node:path"
     fs.readdirSync("./src/api")
         .filter((name) => name !== "index.ts")
         .forEach((module) => {
-            code += `export * from './${path.basename(module, ".ts")}'\n`
+            code += `export * from "./${path.basename(module, ".ts")}"\n`
         })
     fs.writeFileSync("./src/api/index.ts", code)
 })()
