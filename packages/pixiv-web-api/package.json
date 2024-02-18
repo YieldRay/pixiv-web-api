@@ -41,8 +41,8 @@
     },
     "author": "YieldRay",
     "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/YieldRay/pixiv-web-api/issues"
-    },
-    "homepage": "https://github.com/YieldRay/pixiv-web-api#readme"
+    "repository": {
+        "url": "https://github.com/YieldRay/pixiv-web-api",
+        "directory": "packages/pixiv-web-api"
+    }
 }
