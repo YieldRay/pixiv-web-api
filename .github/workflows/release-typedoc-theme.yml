@@ -11,6 +11,7 @@ on:
 permissions:
     contents: read
     packages: write
+    id-token: write
 
 jobs:
     publish-npm:
@@ -31,3 +32,4 @@ jobs:
               with:
                   token: ${{secrets.NPM_TOKEN}}
                   package: ./packages/typedoc-theme-azure
+                  provenance: true

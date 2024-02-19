@@ -11,6 +11,7 @@ on:
 permissions:
     contents: read
     packages: write
+    id-token: write
 
 jobs:
     publish-npm:
@@ -41,3 +42,4 @@ jobs:
                   token: ${{secrets.NPM_TOKEN}}
                   package: ./packages/pixiv-web-api
                   access: public
+                  provenance: true
