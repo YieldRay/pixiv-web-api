@@ -1,8 +1,12 @@
 // The only plugin entry, executed in node.js
 
-const { cpSync } = require("node:fs")
-const { resolve } = require("node:path")
-const { JSX, RendererEvent } = require("typedoc")
+import { JSX } from "typedoc"
+import { cpSync } from "node:fs"
+import { resolve, dirname } from "node:path"
+import { fileURLToPath } from "node:url"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 // static assets map
 const ASSETS = {
@@ -17,8 +21,11 @@ function linkStyleSheet(href) {
     })
 }
 
-function load(app) {
-    app.listenTo(app.renderer, RendererEvent.END, () => {
+/**
+ * @param {import("typedoc").Application} app
+ */
+export function load(app) {
+    app.renderer.postRenderAsyncJobs.push(() => {
         for (const [from, to] of Object.entries(ASSETS)) {
             cpSync(
                 resolve(__dirname, from),
@@ -52,5 +59,3 @@ function load(app) {
         }),
     )
 }
-
-module.exports = { load }

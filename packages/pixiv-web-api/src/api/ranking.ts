@@ -3,7 +3,7 @@ import { requestJSON } from "@/request"
 /**
  * 排行榜
  *
- * @reference https://pixiv.net/ranking.php
+ * @see https://pixiv.net/ranking.php
  */
 export const ranking = (query?: {
     mode?:

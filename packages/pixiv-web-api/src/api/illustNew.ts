@@ -4,7 +4,7 @@ import { Query, requestJSONAPI } from "@/request"
  *
  * 大家的新作 插画、漫画、小说
  *
- * @reference https://www.pixiv.net/new_illust.php
+ * @see https://www.pixiv.net/new_illust.php
  */
 export const illustNew = (
     query: Query<{

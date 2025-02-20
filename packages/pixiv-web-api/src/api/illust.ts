@@ -3,7 +3,7 @@ import { requestJSONAPI, Query } from "@/request"
 /**
  * artwork 详情
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const illust = (id: number, query?: Query) =>
     requestJSONAPI(`/ajax/illust/${id}`, query)
@@ -11,7 +11,7 @@ export const illust = (id: number, query?: Query) =>
 /**
  * 加载更多页
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const illustPages = (id: number) =>
     requestJSONAPI<
@@ -30,7 +30,7 @@ export const illustPages = (id: number) =>
 /**
  * 推荐初始化
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const illustRecommendInit = (
     id: number,
@@ -50,14 +50,14 @@ export const illustRecommendInit = (
  * 此接口的逻辑为：先调用 illustRecommendInit() 获取返回的 nextIds 数组
  * 取该数组的前 18 个作为本接口的查询字符串
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const illustRecommendIllusts = (
     query: Query<{ illust_ids: number[] }>,
 ) => requestJSONAPI(`/ajax/illust/recommend/illusts`, query)
 
 /**
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const illustDiscovery = (query: {
     mode?: "all" | "safe" | "r18"
@@ -67,7 +67,7 @@ export const illustDiscovery = (query: {
 /**
  * （需要登录）动图数据
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const illustUgoiraMeta = (id: number) =>
     requestJSONAPI(`/ajax/illust/${id}/ugoira_meta`)

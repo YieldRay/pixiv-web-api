@@ -1,7 +1,7 @@
 {
     "name": "typedoc-theme-azure",
-    "version": "0.1.0",
-    "type": "commonjs",
+    "version": "0.2.0",
+    "type": "module",
     "main": "index.js",
     "sideEffects": false,
     "keywords": [

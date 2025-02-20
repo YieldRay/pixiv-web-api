@@ -5,7 +5,7 @@ import { Query, requestJSONAPI } from "@/request"
  *
  * 此接口逻辑为：第一次 offset=0 limit=3 之后 offset=3 limit=50
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const illustsCommentsRoots = (
     query: Query<{ illust_id: number; limit: number; offset: number }>,
@@ -14,7 +14,7 @@ export const illustsCommentsRoots = (
 /**
  * 查询评论（回复）
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const illustsCommentsReplies = (query: {
     comment_id: number
@@ -24,7 +24,7 @@ export const illustsCommentsReplies = (query: {
 /**
  * 发表评论
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const rpcPostComment = (data: {
     type: "comment" | "stamp"
@@ -36,7 +36,7 @@ export const rpcPostComment = (data: {
 /**
  * 删除评论
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const rpcDeleteComment = (data: {
     /**

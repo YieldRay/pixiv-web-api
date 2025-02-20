@@ -1,7 +1,10 @@
 # pixiv-web-api
 
-对 Pixiv 网页端 API 的简单封装  
-零依赖，基于 `fetch()`，因此支持多数 Javascript 运行时
+[![](https://img.shields.io/npm/v/@__dirname/pixiv-web-api)](https://www.npmjs.com/package/@__dirname/pixiv-web-api)
+[![](https://badgen.net/packagephobia/install/@__dirname/pixiv-web-api)](https://packagephobia.com/result?p=@__dirname/pixiv-web-api)
+
+一个 Pixiv 网页端 API 的简单封装  
+零依赖，基于 `fetch()`，支持绝大多数 Javascript 运行时
 
 例如：浏览器（需要自行处理 CORS），nodejs>=18，deno，bun，以及其它 serverless 环境
 

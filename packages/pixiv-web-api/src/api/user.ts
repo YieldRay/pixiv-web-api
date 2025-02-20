@@ -79,7 +79,7 @@ export const rpcGroupSetting = (data: {
 /**
  * 当前用户额外信息
  *
- * @reference https://www.pixiv.net
+ * @see https://www.pixiv.net
  */
 export const userExtra = (query?: Query) =>
     requestJSONAPI<{
@@ -104,7 +104,7 @@ export const rpc = (
 ) => requestJSONAPI(`/rpc/index.php`, undefined, data)
 
 /**
- * @params query 可选
+ * @param query 可选
  */
 export const userProfile = (
     id: number,

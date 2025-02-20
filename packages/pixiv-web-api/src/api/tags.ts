@@ -3,7 +3,7 @@ import { Query, requestJSONAPI } from "@/request"
 /**
  * 鼠标移入Tag时触发，返回一张预览图片
  *
- * @reference https://www.pixiv.net/artworks/${id}
+ * @see https://www.pixiv.net/artworks/${id}
  */
 export const tagInfo = (query: Query<{ tag: string }>) =>
     requestJSONAPI<{

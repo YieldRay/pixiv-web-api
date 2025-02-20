@@ -27,7 +27,7 @@ export const searchSuggestion = () =>
  * @param type "artworks" 为搜索触发，其余为搜索页面选择得来
  * @returns 根据 type 的不同，返回值也不同
  *
- * @reference https://www.pixiv.net/tags/${keyword}
+ * @see https://www.pixiv.net/tags/${keyword}
  *
  * @example /ajax/search/artworks/miku?word=miku&order=date_d&mode=all&p=1&s_mode=s_tag&type=all
  * @example /ajax/search/top/miku
