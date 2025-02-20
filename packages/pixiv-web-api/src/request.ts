@@ -18,6 +18,13 @@ export type Query<T extends RequestQuery = {}> = {
 
 type RequestType = "json" | "form" | "formdata"
 
+export class PixivWebAPIError extends Error {
+    override name = "PixivWebAPIError"
+    constructor(message: string) {
+        super(message)
+    }
+}
+
 /**
  * The basic request function, returns `Response` instance
  *
@@ -61,7 +68,8 @@ export const request = (
         // 以下 Headers 浏览器受限
         headers.set(
             "User-Agent",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.0.0",
+            // https://www.useragents.me/
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.3",
         )
         headers.set("Referer", "https://www.pixiv.net")
     }
@@ -98,7 +106,7 @@ export const request = (
     }
 
     return fetch(
-        String(url), // 防止某些 fetch 的实现第一个参数只接受字符串
+        String(url), // 防止某些 fetch 实现的一个参数只接受字符串
         {
             method: data ? "POST" : "GET",
             body,
@@ -119,10 +127,16 @@ export const requestJSON = async <T = any>(
 ) => {
     const res = await request(endpoint, query, data, type)
     if (res.ok) {
-        return (await res.json()) as T
+        try {
+            return (await res.json()) as T
+        } catch {
+            throw new PixivWebAPIError(
+                `Failed to parse JSON for url (${res.url})`,
+            )
+        }
     } else {
-        throw new TypeError(
-            `response is not ok (${res.status}) for url (${res.url})`,
+        throw new PixivWebAPIError(
+            `HTTP response is not ok (${res.status}) for url (${res.url})`,
         )
     }
 }
@@ -140,7 +154,7 @@ export const requestJSONAPI = async <T = any, U = unknown>(
         { error: false; body: T } | { error: true; message: string; body: U }
     >(endpoint, query, data, type)
     if (json.error) {
-        throw new Error(json.message)
+        throw new PixivWebAPIError(json.message)
     } else {
         return json.body
     }
