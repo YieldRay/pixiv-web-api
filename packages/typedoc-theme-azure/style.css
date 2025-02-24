@@ -1,13 +1,15 @@
 body {
-    font-family: "DM Mono", "Microsoft Yahei", "Helvetica Neue", "Helvetica",
-        "Arial", sans-serif;
+    font-family:
+        "DM Mono", "Microsoft Yahei", "Helvetica Neue", "Helvetica", "Arial",
+        sans-serif;
 }
 
 pre,
 code,
 .tsd-signature {
-    font-family: "Google Sans Mono", "Microsoft Yahei", "Helvetica Neue",
-        "Helvetica", Menlo, Monaco, "Courier New", monospace;
+    font-family:
+        "Google Sans Mono", "Microsoft Yahei", "Helvetica Neue", "Helvetica",
+        Menlo, Monaco, "Courier New", monospace;
 }
 
 .tsd-signature {
@@ -56,6 +58,10 @@ pre {
             text-overflow: ellipsis;
         }
     }
+}
+
+footer:empty {
+    display: none;
 }
 
 header.tsd-page-toolbar {

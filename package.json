@@ -8,8 +8,8 @@
         "build:api": "pnpm --dir=packages/pixiv-web-api build"
     },
     "devDependencies": {
-        "typedoc": "^0.27.7",
-        "prettier": "^3.5.1"
+        "prettier": "^3.5.2",
+        "typedoc": "^0.27.8"
     },
     "packageManager": "pnpm@10.4.1"
 }
