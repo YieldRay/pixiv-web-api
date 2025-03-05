@@ -72,7 +72,7 @@ import * as pixiv_web_api from "@__dirname/pixiv-web-api"
 pixiv_web_api.setOptions({
     // 默认值 https://www.pixiv.net （国内网络需要代理）
     // 若实现了对 https://www.pixiv.net 的反向代理，则可以使用该代理调用 API，例如：
-    baseURL: "https://cors.streammaximum.com/https://www.pixiv.net",
+    baseURL: "https://cros.deno.dev/https://www.pixiv.net",
     // 设置语言
     // 浏览器默认为本机语言，其它环境默认值为 zh-CN（设置为空字符串可移除）
     acceptLanguage: "zh-CN",
